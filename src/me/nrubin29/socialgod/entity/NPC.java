@@ -9,10 +9,6 @@ public class NPC extends Entity {
         setLocation(loc);
     }
 
-    public void interact() {
-        // Do something.
-    }
-
     public enum NPCType {
         BOY,
         GIRL;

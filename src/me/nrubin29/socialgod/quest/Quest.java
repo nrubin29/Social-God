@@ -4,6 +4,4 @@ abstract class Quest {
 
     public abstract void start();
 
-    public void finish() {
-    }
 }

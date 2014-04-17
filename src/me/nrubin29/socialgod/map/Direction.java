@@ -1,7 +1,5 @@
 package me.nrubin29.socialgod.map;
 
-import me.nrubin29.socialgod.misc.Constants;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -19,13 +17,13 @@ public enum Direction {
     public Point getMovement() {
         switch (values()[ordinal()]) {
             case LEFT:
-                return new Point(Constants.TILE_WIDTH * -1, 0);
+                return new Point(0, -1);
             case UP:
-                return new Point(0, Constants.TILE_HEIGHT * -1);
+                return new Point(-1, 0);
             case RIGHT:
-                return new Point(Constants.TILE_WIDTH, 0);
+                return new Point(0, 1);
             case DOWN:
-                return new Point(0, Constants.TILE_HEIGHT);
+                return new Point(1, 0);
             default:
                 return null;
         }

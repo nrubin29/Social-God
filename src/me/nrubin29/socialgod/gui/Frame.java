@@ -4,16 +4,25 @@ import javafx.embed.swing.JFXPanel;
 import me.nrubin29.socialgod.misc.Constants;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class CoreFrame extends JFrame {
+public class Frame extends JFrame {
 
-    private static final CoreFrame instance = new CoreFrame();
+    private static final Frame instance = new Frame();
     private final GUI gui;
 
-    private CoreFrame() {
+    private Frame() {
         super(Constants.NAME + " v" + Constants.VERSION);
 
         add(gui = new GUI());
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                gui.keyPressed = e.getKeyCode();
+            }
+        });
 
         new JFXPanel(); // Set up audio.
 
@@ -24,7 +33,7 @@ public class CoreFrame extends JFrame {
         setVisible(true);
     }
 
-    public static CoreFrame getInstance() {
+    public static Frame getInstance() {
         return instance;
     }
 

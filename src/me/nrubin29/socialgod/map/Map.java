@@ -66,7 +66,7 @@ public final class Map {
         return rows.get(p.x).locationAt(p.y);
     }
 
-    public Location getLocation(int row, int column) {
+    Location getLocation(int row, int column) {
         return getLocation(new Point(row, column));
     }
 

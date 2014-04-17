@@ -1,12 +1,10 @@
 package me.nrubin29.socialgod;
 
-import me.nrubin29.socialgod.gui.CoreFrame;
 import me.nrubin29.socialgod.gui.ErrorPopup;
-import me.nrubin29.socialgod.quest.CreateAccounts;
+import me.nrubin29.socialgod.gui.Frame;
+import me.nrubin29.socialgod.quest.TestQuest;
 import me.nrubin29.socialgod.tile.TilesheetManager;
 import me.nrubin29.socialgod.util.UtilityProvider;
-
-import java.awt.*;
 
 class Main {
 
@@ -14,10 +12,7 @@ class Main {
         Thread.setDefaultUncaughtExceptionHandler((th, e) -> {
             e.printStackTrace();
 
-            System.gc();
-            for (Window window : Window.getWindows()) {
-                window.dispose();
-            }
+            Frame.getInstance().dispose();
 
             new ErrorPopup(e);
         });
@@ -25,9 +20,9 @@ class Main {
         UtilityProvider.setup(getClass());
         TilesheetManager.getInstance().setup();
 
-        CoreFrame.getInstance();
+        me.nrubin29.socialgod.gui.Frame.getInstance();
 
-        new CreateAccounts().start();
+        new TestQuest().start();
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,5 @@
 package me.nrubin29.socialgod.gui;
 
-import me.nrubin29.socialgod.keycommand.KeyCommandManager;
 import me.nrubin29.socialgod.misc.Constants;
 import me.nrubin29.socialgod.util.UtilityProvider;
 
@@ -29,8 +28,8 @@ public class Popup extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Popup.this.setVisible(false);
-                CoreFrame.getInstance().getGUI().remove(Popup.this);
-                KeyCommandManager.getInstance().setInputEnabled(true);
+                Frame.getInstance().getGUI().remove(Popup.this);
+                Frame.getInstance().getGUI().setInputEnabled(true);
 
                 if (whenDone != null) whenDone.run();
             }
@@ -49,8 +48,8 @@ public class Popup extends JPanel {
     }
 
     void add() {
-        CoreFrame.getInstance().getGUI().add(this);
-        KeyCommandManager.getInstance().setInputEnabled(false);
+        Frame.getInstance().getGUI().add(this);
+        Frame.getInstance().getGUI().setInputEnabled(false);
     }
 
     public static class PopupFactory {

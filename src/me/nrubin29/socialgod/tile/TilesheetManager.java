@@ -28,8 +28,7 @@ public class TilesheetManager {
             }
 
             reader.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
     }
 

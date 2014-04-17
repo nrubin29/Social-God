@@ -55,9 +55,6 @@ public class Entity {
         return images.get(d).get(moving ? walkCycle.get(d) : 0);
     }
 
-    public void interact() {
-    }
-
     public Direction getCurrentDirection() {
         return currentDirection;
     }
@@ -78,6 +75,10 @@ public class Entity {
 
     public ImageIcon getCurrentImage(int width, int height) {
         return UtilityProvider.getResourceUtil().resizeImage(getCurrentImage(), width, height);
+    }
+
+    public ImageIcon getFace() {
+        return face;
     }
 
     public void setCurrentImage(Direction d, boolean moving) {

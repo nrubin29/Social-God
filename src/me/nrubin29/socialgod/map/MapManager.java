@@ -1,7 +1,7 @@
 package me.nrubin29.socialgod.map;
 
 import me.nrubin29.socialgod.audio.AudioPlayer;
-import me.nrubin29.socialgod.misc.Session;
+import me.nrubin29.socialgod.gui.Frame;
 import me.nrubin29.socialgod.util.UtilityProvider;
 
 import java.io.BufferedReader;
@@ -44,7 +44,7 @@ public class MapManager {
 
     void setCurrentMap(Map map) {
         this.currentMap = map;
-        Session.getInstance().getPlayer().setLocation(map.getSpawn());
+        Frame.getInstance().getGUI().getPlayer().setLocation(map.getSpawn());
         AudioPlayer.getInstance().setBackgroundMusic(map.getBackgroundMusic());
     }
 

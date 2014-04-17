@@ -1,9 +1,7 @@
 package me.nrubin29.socialgod.util;
 
 import javax.swing.*;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.FontUIResource;
-import java.awt.*;
 
 public class UtilityProvider {
 
@@ -18,22 +16,24 @@ public class UtilityProvider {
         fontUtil = new FontUtil();
         threadUtil = new ThreadUtil();
 
-        UIManager.put("nimbusBase", Color.DARK_GRAY);
-        UIManager.put("nimbusBlueGrey", Color.GRAY);
-        UIManager.put("control", Color.GRAY);
-        UIManager.put("text", Color.DARK_GRAY);
+        UIManager.getLookAndFeelDefaults().put("defaultFont", new FontUIResource(fontUtil.getFont()));
 
-        try {
-            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    UIManager.getLookAndFeelDefaults().put("defaultFont", new FontUIResource(fontUtil.getFont()));
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("No nimbus");
-        }
+//        UIManager.put("nimbusBase", Color.DARK_GRAY);
+//        UIManager.put("nimbusBlueGrey", Color.GRAY);
+//        UIManager.put("control", Color.GRAY);
+//        UIManager.put("text", Color.DARK_GRAY);
+//
+//        try {
+//            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    UIManager.setLookAndFeel(info.getClassName());
+//                    UIManager.getLookAndFeelDefaults().put("defaultFont", new FontUIResource(fontUtil.getFont()));
+//                    break;
+//                }
+//            }
+//        } catch (Exception e) {
+//            System.out.println("No nimbus");
+//        }
     }
 
     public static FileUtil getFileUtil() {

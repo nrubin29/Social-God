@@ -1,12 +1,11 @@
 package me.nrubin29.socialgod.tile;
 
-import me.nrubin29.socialgod.misc.Image;
 import me.nrubin29.socialgod.util.UtilityProvider;
 
 import javax.swing.*;
 import java.awt.*;
 
-public enum Tile implements Image {
+public enum Tile {
 
     EMPTY,
 
