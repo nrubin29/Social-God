@@ -40,18 +40,21 @@ public final class GUI extends JPanel {
             if (keyPressed >= KeyEvent.VK_LEFT && keyPressed <= KeyEvent.VK_DOWN) {
                 movement(Direction.valueOf(keyPressed));
             } else if (keyPressed == KeyEvent.VK_ENTER) {
-                final Direction d = player.getCurrentDirection();
-                final Location location = MapManager.getInstance().getCurrentMap().getLocation(
-                        new Point(
-                                player.getLocation().getPoint().x + d.getMovement().x,
-                                player.getLocation().getPoint().y + d.getMovement().y
-                        )
-                );
+                try {
+                    final Direction d = player.getCurrentDirection();
+                    final Location location = MapManager.getInstance().getCurrentMap().getLocation(
+                            new Point(
+                                    player.getLocation().getPoint().x + d.getMovement().x,
+                                    player.getLocation().getPoint().y + d.getMovement().y
+                            )
+                    );
 
-                if (location.getEntity() != null) {
-                    EventDispatcher.getInstance().callEvent(new InteractWithEntityEvent(location, location.getEntity()));
-                } else {
-                    EventDispatcher.getInstance().callEvent(new InteractEvent(location));
+                    if (location.getEntity() != null) {
+                        EventDispatcher.getInstance().callEvent(new InteractWithEntityEvent(location, location.getEntity()));
+                    } else {
+                        EventDispatcher.getInstance().callEvent(new InteractEvent(location));
+                    }
+                } catch (IndexOutOfBoundsException ignored) {
                 }
             } else if (keyPressed == KeyEvent.VK_S) {
                 if (socialBridge == null) add(socialBridge = new SocialBridge());

@@ -36,6 +36,9 @@ public class AudioPlayer {
         }, false);
     }
 
+    /*
+    TODO: Each SoundEffect or Music needs a defined MediaPlayer that is reused.
+     */
     public void playSoundEffect(final SoundEffect audio) {
         UtilityProvider.getThreadUtil().runThreadInBackground(() -> {
             try {
