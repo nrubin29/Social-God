@@ -39,12 +39,8 @@ public class Popup extends JPanel {
         add(x);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBounds(new Rectangle(
-                (Constants.DIMENSION.width / 2) - (Constants.POPUP_DIMENSION.width / 2),
-                (Constants.DIMENSION.height / 2) - (Constants.POPUP_DIMENSION.height / 2),
-                Constants.POPUP_DIMENSION.width,
-                Constants.POPUP_DIMENSION.height
-        ));
+        setSize(Constants.POPUP_DIMENSION);
+        setLocation(UtilityProvider.getMiscUtil().center(Constants.POPUP_DIMENSION));
     }
 
     void add() {

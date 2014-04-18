@@ -15,25 +15,23 @@ public class ThreadUtil {
     }
 
     public void runThreadInBackground(final Runnable run, final boolean loop) {
-        Thread th = new Thread(new Runnable() {
-            public void run() {
+        SwingWorker<Void, Void> back = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
                 run.run();
-                if (loop) run();
+                return null;
             }
-        });
+        };
 
-        th.start();
+        back.run();
+
+//        Thread th = new Thread(new Runnable() {
+//            public void run() {
+//                run.run();
+//                if (loop) run();
+//            }
+//        });
+//
+//        th.start();
     }
-
-//	public void runGUITaskInBackground(final Runnable run) {
-//		SwingWorker<Void, Void> sw = new SwingWorker<Void, Void>() {
-//			@Override
-//			protected Void doInBackground() {
-//				run.run();
-//				return null;
-//			}
-//		};
-//		
-//		sw.execute();
-//	}
 }

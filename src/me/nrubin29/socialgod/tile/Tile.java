@@ -1,7 +1,5 @@
 package me.nrubin29.socialgod.tile;
 
-import me.nrubin29.socialgod.util.UtilityProvider;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -72,12 +70,8 @@ public enum Tile {
         return layer;
     }
 
-    private ImageIcon getImage() {
+    public ImageIcon getImage() {
         if (this.id.equals("E")) JOptionPane.showMessageDialog(null, "Attempting to get image on empty tile!");
         return image;
-    }
-
-    public ImageIcon getImage(int width, int height) {
-        return UtilityProvider.getResourceUtil().resizeImage(getImage(), width, height);
     }
 }

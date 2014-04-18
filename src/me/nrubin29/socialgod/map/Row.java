@@ -1,4 +1,4 @@
-package me.nrubin29.socialgod.tile;
+package me.nrubin29.socialgod.map;
 
 import java.util.ArrayList;
 

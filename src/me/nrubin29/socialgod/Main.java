@@ -20,7 +20,7 @@ class Main {
         UtilityProvider.setup(getClass());
         TilesheetManager.getInstance().setup();
 
-        me.nrubin29.socialgod.gui.Frame.getInstance();
+        Frame.getInstance();
 
         new TestQuest().start();
     }

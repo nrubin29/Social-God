@@ -6,6 +6,7 @@ public class Constants {
 
     /* GUI */
     public static final Dimension DIMENSION = new Dimension(640, 500);
+    public static final Dimension SOCIAL_DIMENSION = new Dimension(300, 110);
     public static final Dimension POPUP_DIMENSION = new Dimension(300, 130);
     public static final Dimension NOTIFICATION_DIMENSION = new Dimension(250, 40);
     public static final Dimension ERROR_DIMENSION = new Dimension(300, 250);

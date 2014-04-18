@@ -21,6 +21,7 @@ public class Frame extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 gui.keyPressed = e.getKeyCode();
+                gui.metaPressed = e.isMetaDown() || e.isControlDown();
             }
         });
 

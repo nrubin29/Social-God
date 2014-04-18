@@ -1,6 +1,7 @@
-package me.nrubin29.socialgod.tile;
+package me.nrubin29.socialgod.map;
 
 import me.nrubin29.socialgod.entity.Entity;
+import me.nrubin29.socialgod.tile.Tile;
 
 import java.awt.*;
 

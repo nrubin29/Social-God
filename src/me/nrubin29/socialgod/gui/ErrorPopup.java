@@ -14,14 +14,6 @@ public class ErrorPopup extends JFrame {
     public ErrorPopup(final Throwable e) {
         super("Error");
 
-        try {
-//			JLabel player = new JLabel(UtilityProvider.getResourceUtil().resizeImage(Session.getInstance().getPlayer().getImage(Direction.DOWN, false), 25, 25));
-//			JPanel playerPanel = new JPanel();
-//			playerPanel.add(player);
-//			add(playerPanel);
-        } catch (Exception ignored) {
-        }
-
         JTextArea notice = new JTextArea(
                 "Congratulations, beta tester, you have discovered a bug! Please follow the steps below to correctly submit a bug report:\n\n" +
                         "1. Click Submit Bug Report. This opens a new email, so if it opens in an email client you don't use, compose a new email in your favorite client.\n" +

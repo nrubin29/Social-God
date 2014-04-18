@@ -2,7 +2,7 @@ package me.nrubin29.socialgod.event.events;
 
 import me.nrubin29.socialgod.event.Event;
 import me.nrubin29.socialgod.gui.Frame;
-import me.nrubin29.socialgod.tile.Location;
+import me.nrubin29.socialgod.map.Location;
 
 import java.awt.*;
 

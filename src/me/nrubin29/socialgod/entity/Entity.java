@@ -1,7 +1,7 @@
 package me.nrubin29.socialgod.entity;
 
 import me.nrubin29.socialgod.map.Direction;
-import me.nrubin29.socialgod.tile.Location;
+import me.nrubin29.socialgod.map.Location;
 import me.nrubin29.socialgod.tile.Tilesheet;
 import me.nrubin29.socialgod.util.UtilityProvider;
 
@@ -69,12 +69,8 @@ public class Entity {
         if (loc.getEntity() != this) loc.setEntity(this);
     }
 
-    ImageIcon getCurrentImage() {
+    public ImageIcon getCurrentImage() {
         return currentImage;
-    }
-
-    public ImageIcon getCurrentImage(int width, int height) {
-        return UtilityProvider.getResourceUtil().resizeImage(getCurrentImage(), width, height);
     }
 
     public ImageIcon getFace() {

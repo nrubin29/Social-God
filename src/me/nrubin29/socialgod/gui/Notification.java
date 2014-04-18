@@ -1,46 +1,52 @@
 package me.nrubin29.socialgod.gui;
 
+import me.nrubin29.socialgod.audio.AudioPlayer;
+import me.nrubin29.socialgod.audio.SoundEffect;
+import me.nrubin29.socialgod.misc.ColorScheme;
 import me.nrubin29.socialgod.misc.Constants;
 import me.nrubin29.socialgod.util.UtilityProvider;
 
-import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.util.ArrayList;
 
-public class Notification {
+public class Notification extends JPanel {
 
-    static final ArrayList<Notification> ncs = new ArrayList<>();
+    private static final long serialVersionUID = 1L;
 
-    private String title, message;
+    private static final ArrayList<Notification> ncs = new ArrayList<>();
 
-    private Notification(String title, String message) {
-        this.title = title;
-        this.message = message;
-    }
+    private Notification(String title, String message, ColorScheme colorScheme) {
+        JLabel t = new JLabel(title);
+        t.setFont(UtilityProvider.getFontUtil().getFont(10));
+        t.setForeground(colorScheme.getText());
 
-    public static void showNotification(String title, String message) {
-        final Notification n = new Notification(title, message);
-        ncs.add(n);
+        JLabel m = new JLabel(message);
+        m.setForeground(colorScheme.getText());
 
-        UtilityProvider.getThreadUtil().runTimer(5 * 1000, () -> ncs.remove(n));
-    }
+        add(Box.createVerticalStrut(5));
+        add(t);
+        add(m);
 
-    /*
-    The current issue with notifications is that I am relying on the size of the ArrayList.
-    I need to use an index or handle the painting in here.
-     */
-    public void paint(Graphics g) {
-        g.setColor(Constants.TRANSLUCENT);
-
-        g.fillRect(
+        setBorder(new MatteBorder(2, 2, 2, 2, colorScheme.getText()));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBackground(colorScheme.getBackground());
+        setSize(Constants.NOTIFICATION_DIMENSION);
+        setLocation(
                 Frame.getInstance().getGUI().getSize().width - Constants.NOTIFICATION_DIMENSION.width,
-                (ncs.size() - 1) * Constants.NOTIFICATION_DIMENSION.height,
-                Constants.NOTIFICATION_DIMENSION.width,
-                Constants.NOTIFICATION_DIMENSION.height
+                ncs.size() * Constants.NOTIFICATION_DIMENSION.height
         );
+    }
 
-        g.setColor(Color.WHITE);
+    public static void showNotification(String title, String message, ColorScheme colorScheme) {
+        final Notification n = new Notification(title, message, colorScheme);
+        Frame.getInstance().getGUI().add(n);
+        ncs.add(n);
+        AudioPlayer.getInstance().playSoundEffect(SoundEffect.CLICK);
 
-        g.drawString(title, Frame.getInstance().getGUI().getSize().width - Constants.NOTIFICATION_DIMENSION.width, ncs.size() == 1 ? 12 : ncs.size() * Constants.NOTIFICATION_DIMENSION.height);
-        g.drawString(message, Frame.getInstance().getGUI().getSize().width - Constants.NOTIFICATION_DIMENSION.width, ncs.size() == 1 ? 30 : ncs.size() * Constants.NOTIFICATION_DIMENSION.height + 18);
+        UtilityProvider.getThreadUtil().runTimer(5 * 1000, () -> {
+            Frame.getInstance().getGUI().remove(n);
+            ncs.remove(n);
+        });
     }
 }

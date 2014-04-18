@@ -7,6 +7,7 @@ public class UtilityProvider {
 
     private static FileUtil fileUtil;
     private static FontUtil fontUtil;
+    private static MiscUtil miscUtil;
     private static ResourceUtil resourceUtil;
     private static ThreadUtil threadUtil;
 
@@ -15,6 +16,7 @@ public class UtilityProvider {
         resourceUtil = new ResourceUtil(mainClass);
         fontUtil = new FontUtil();
         threadUtil = new ThreadUtil();
+        miscUtil = new MiscUtil();
 
         UIManager.getLookAndFeelDefaults().put("defaultFont", new FontUIResource(fontUtil.getFont()));
 
@@ -50,5 +52,9 @@ public class UtilityProvider {
 
     public static ThreadUtil getThreadUtil() {
         return threadUtil;
+    }
+
+    public static MiscUtil getMiscUtil() {
+        return miscUtil;
     }
 }

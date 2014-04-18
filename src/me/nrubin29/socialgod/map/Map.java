@@ -1,8 +1,6 @@
 package me.nrubin29.socialgod.map;
 
 import me.nrubin29.socialgod.audio.Music;
-import me.nrubin29.socialgod.tile.Location;
-import me.nrubin29.socialgod.tile.Row;
 import me.nrubin29.socialgod.util.UtilityProvider;
 
 import java.awt.*;

@@ -7,6 +7,7 @@ import me.nrubin29.socialgod.event.events.InteractWithEntityEvent;
 import me.nrubin29.socialgod.event.events.MoveEvent;
 import me.nrubin29.socialgod.gui.Notification;
 import me.nrubin29.socialgod.map.MapManager;
+import me.nrubin29.socialgod.network.NetworkManager;
 
 import java.awt.*;
 
@@ -33,7 +34,7 @@ public class TestQuest extends Quest {
                 if (e.getEntity().equals(p)) {
                     System.out.println("Hi");
                     for (int i = 0; i < 5; i++) {
-                        Notification.showNotification("Title", "Message");
+                        Notification.showNotification("Title", "Message", NetworkManager.getInstance().getNetwork("Facebook").getColorScheme());
                     }
                 }
             }

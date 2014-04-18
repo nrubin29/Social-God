@@ -1,6 +1,6 @@
 package me.nrubin29.socialgod.entity;
 
-import me.nrubin29.socialgod.tile.Location;
+import me.nrubin29.socialgod.map.Location;
 
 public class NPC extends Entity {
 

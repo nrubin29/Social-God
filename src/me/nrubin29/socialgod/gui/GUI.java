@@ -8,11 +8,11 @@ import me.nrubin29.socialgod.event.events.InteractEvent;
 import me.nrubin29.socialgod.event.events.InteractWithEntityEvent;
 import me.nrubin29.socialgod.event.events.MoveEvent;
 import me.nrubin29.socialgod.map.Direction;
+import me.nrubin29.socialgod.map.Location;
 import me.nrubin29.socialgod.map.MapManager;
+import me.nrubin29.socialgod.map.Row;
 import me.nrubin29.socialgod.misc.Constants;
 import me.nrubin29.socialgod.tile.Layer;
-import me.nrubin29.socialgod.tile.Location;
-import me.nrubin29.socialgod.tile.Row;
 import me.nrubin29.socialgod.tile.Tile;
 import me.nrubin29.socialgod.util.UtilityProvider;
 
@@ -22,9 +22,11 @@ import java.awt.event.KeyEvent;
 
 public final class GUI extends JPanel {
 
+    private final Player player;
     int keyPressed = -1;
-    private Player player;
+    boolean metaPressed = false;
     private boolean inputEnabled = true;
+    private SocialBridge socialBridge;
 
     public GUI() {
         player = new Player("Player");
@@ -51,6 +53,14 @@ public final class GUI extends JPanel {
                 } else {
                     EventDispatcher.getInstance().callEvent(new InteractEvent(location));
                 }
+            } else if (keyPressed == KeyEvent.VK_S) {
+                if (socialBridge == null) add(socialBridge = new SocialBridge());
+                else {
+                    remove(socialBridge);
+                    socialBridge = null;
+                }
+            } else if (keyPressed == KeyEvent.VK_M && metaPressed) {
+                AudioPlayer.getInstance().toggleMute();
             }
 
             keyPressed = -1;
@@ -61,13 +71,13 @@ public final class GUI extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponents(g);
+
         drawTiles(g, Layer.BACKGROUND);
         drawTiles(g, Layer.BELOW);
         drawTiles(g, Layer.ON);
         drawTiles(g, Layer.ENTITY);
         drawTiles(g, Layer.ABOVE);
-
-        Notification.ncs.stream().forEach(n -> n.paint(g));
     }
 
     private void drawTiles(Graphics g, Layer l) {
@@ -76,14 +86,14 @@ public final class GUI extends JPanel {
             for (int i = 0; i < Constants.TILES_PER_ROW; i++) {
                 Location loc = row.locationAt(i);
                 if (l == Layer.BACKGROUND) {
-                    g.drawImage(MapManager.getInstance().getCurrentMap().getType().getBackgroundTile().getImage(Constants.TILE_WIDTH, Constants.TILE_HEIGHT).getImage(), i * Constants.TILE_WIDTH, j * Constants.TILE_HEIGHT, this);
+                    g.drawImage(MapManager.getInstance().getCurrentMap().getType().getBackgroundTile().getImage().getImage(), i * Constants.TILE_WIDTH, j * Constants.TILE_HEIGHT, this);
                 } else if (l == Layer.ENTITY) {
                     if (loc.getEntity() != null) {
-                        g.drawImage(loc.getEntity().getCurrentImage(Constants.TILE_WIDTH, Constants.TILE_HEIGHT).getImage(), i * Constants.TILE_WIDTH, j * Constants.TILE_HEIGHT, this);
+                        g.drawImage(loc.getEntity().getCurrentImage().getImage(), i * Constants.TILE_WIDTH, j * Constants.TILE_HEIGHT, this);
                     }
                 } else {
                     if (loc.getTile() != Tile.EMPTY && loc.getTile().getLayer() == l) {
-                        g.drawImage(loc.getTile().getImage(Constants.TILE_WIDTH, Constants.TILE_HEIGHT).getImage(), i * Constants.TILE_WIDTH, j * Constants.TILE_HEIGHT, this);
+                        g.drawImage(loc.getTile().getImage().getImage(), i * Constants.TILE_WIDTH, j * Constants.TILE_HEIGHT, this);
                     }
                 }
             }
